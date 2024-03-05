@@ -5,13 +5,13 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.order("RANDOM()").limit(3)
     @highest_ave = 0
-    x=0
-    while x != 3
-      if @movies[x]["vote_average"] > @highest_ave
-        @highest_ave=@movies[x]["vote_average"] 
-      end
-        x += 1
-    end
+    # x=0
+    # while x != 3
+    #   if @movies[x]["vote_average"] > @highest_ave
+    #     @highest_ave=@movies[x]["vote_average"] 
+    #   end
+    #     x += 1
+    # end
   end
 
   # GET /movies/1 or /movies/1.json
