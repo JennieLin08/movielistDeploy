@@ -1,0 +1,40 @@
+<p style="color: green"><%= notice %></p>
+
+<div id="movies" class="container-md">
+<table class="table table-stripe">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col"><h4>Movie Title</h4></th>
+      <th scope="col"><h5>Vote Rating</h5></th>
+      <th scope="col"><h5>Vote Count</h5></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <%= render movie %>
+    <% end %>
+  </tbody>
+  <tbody >
+    <tr>
+      <td>w </td>
+      <td>w</td>
+      <td>w</td>
+      <td><button class="btn btn-outline-dark x ">X</button></td>
+    </tr>
+  </tbody>
+</table>
+  
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+$('button').click(function(e) {
+  e.preventDefault();
+  $(this).parent().parent().remove();
+})
+
+var settings = {};
+new TomSelect('#search',settings);
+</script>

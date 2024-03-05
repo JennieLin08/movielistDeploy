@@ -1,0 +1,9 @@
+
+
+    <tr id="<%= dom_id movie %>" class=<%= movie.vote_average == @highest_ave ? "table-success" : "" %>  >
+      <td><%= movie.title %> </td>
+      <td><%= movie.vote_average %></td>
+      <td><%= movie.vote_count %></td>
+      <td><button class="btn btn-outline-dark x ">X</button></td>
+    </tr>
+

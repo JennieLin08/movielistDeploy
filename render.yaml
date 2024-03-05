@@ -1,0 +1,24 @@
+databases:
+  - name: movie_list
+    ipAllowList: []
+    databaseName: movie_list
+    user: movie_list
+    plan: free
+
+services:
+  - type: web
+    name: movie_list
+    runtime: ruby
+    plan: free
+    buildCommand: "./render-build.sh"
+    # preDeployCommand: "./bin/rails db:migrate" # preDeployCommand only available on paid instance types
+    startCommand: "bundle exec rails s"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: movie_list
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: 2 # sensible default

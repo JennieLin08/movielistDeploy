@@ -1,0 +1,10 @@
+<nav class="navbar navbar-dark bg-dark">
+<div class="container-fluid">
+  <a class="navbar-brand">Movie List</a>
+  <div class="d-flex">
+  </div>
+  <%= select("Search", "id", Movie.all.collect {|p| [ p.title, p] }, {prompt: 'Search . . .'},{class: 'sel rounded p-1 me-1 border border-secondary ',id: 'search'}) %>
+
+</div>
+</nav>
+
