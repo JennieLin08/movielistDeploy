@@ -15,16 +15,16 @@
       <%= render movie %>
     <% end %>
   </tbody>
-  <!--
-  <tbody >
-    <tr>
-      <td>w </td>
-      <td>w</td>
-      <td>w</td>
-      <td><button class="btn btn-outline-dark x ">X</button></td>
-    </tr>
+  <tbody id="append_list">
+    <% @all_movies.each do |m| %>
+      <tr hidden id="<%= m.id %>">
+        <td><%= m.title %> </td>
+        <td><%= m.vote_average %></td>
+        <td><%= m.vote_count %></td>
+        <td><button class="btn btn-outline-dark x ">X</button></td>
+      </tr>
+    <% end %>
   </tbody>
-  -->
 </table>
   
 </div>
@@ -32,11 +32,55 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+var val = new TomSelect('#nav_search',{
+  optionClass: 'option',
+	itemClass: 'item',
+	render:{
+		option: function(data, escape) {
+			return '<div>' + escape(data.text) + '</div>';
+		},
+		item: function(data, escape) {
+			return '<div>' + escape(data.text) + '</div>';
+		},
+		option_create: function(data, escape) {
+			return '<div class="create">Add <strong>' + escape(data.input) + '</strong>&hellip;</div>';
+		},
+		no_results:function(data,escape){
+			return '<div class="no-results">No results found for "'+escape(data.input)+'"</div>';
+		},
+		not_loading:function(data,escape){
+			// no default content
+		},
+		optgroup: function(data) {
+			let optgroup = document.createElement('div');
+			optgroup.className = 'optgroup';
+			optgroup.appendChild(data.options);
+			return optgroup;
+		},
+		optgroup_header: function(data, escape) {
+			return '<div class="optgroup-header">' + escape(data.label) + '</div>';
+		},
+		loading:function(data,escape){
+			return '<div class="spinner"></div>';
+		},
+		dropdown:function(){
+			return '<div></div>';
+		}
+	}
+});
+
+$('#nav_search').change(function(e) {
+  e.preventDefault();
+  const get_id = val.activeOption.id;
+  const explode_id_arr = get_id.split("-");
+  const id = explode_id_arr[2];
+  document.getElementById(id).removeAttribute("hidden");
+}) ;
+
 $('button').click(function(e) {
   e.preventDefault();
   $(this).parent().parent().remove();
-})
+});
+  
 
-var settings = {};
-new TomSelect('#search',settings);
 </script>

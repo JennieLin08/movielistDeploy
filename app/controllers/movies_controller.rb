@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
+    @all_movies = Movie.all
     @movies = Movie.order("RANDOM()").limit(3)
     @highest_ave = 0
     x=0
